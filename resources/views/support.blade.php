@@ -10,22 +10,17 @@
 
                 <label class="control-label" for="inputInfo">Введите ваш email</label>
                 <div class="controls">
-                    <input type="text" id="inputInfo" name="email">
+                    <input type="text" id="inputInfo" name="email" required>
                 </div>
 
                 <label class="control-label" for="inputText">Ваше сообщение</label>
-                <textarea rows="3" id="inputText"  name="message"></textarea>
+                <textarea rows="3" id="inputText" name="message" required></textarea>
 
                 <br/>
                 <button type="submit" class="btn btn-success">Послать сообщение</button>
 
 
                 {{ Form::close() }}
-
-
-                <br/>
-                <label class="control-label" >Контактный email: {{ env('CREATOR_EMAIL') }}</label>
-
 
             </div>
         </div>

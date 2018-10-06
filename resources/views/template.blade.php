@@ -35,7 +35,10 @@
 <div class="container-narrow">
     <div class="jumbotron">
         <a href="{{ url('/') }}">На главную</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{{ url('/support') }}">Написать в поддержку</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{ url('/contacts') }}">Контакты</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{ url('/return') }}">Возврат</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{ url('/about') }}">О компании</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{ url('/support') }}">Поддержка</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="{{ url('/license') }}">Пользовательское соглашение</a>
     </div>
 </div>
