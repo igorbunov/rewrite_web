@@ -78,7 +78,7 @@
         </div>
 
         <div class="jumbotron">
-            <a class="btn btn-large btn-success" href="{{ env('FILE_DOWNLOAD_LINK') }}" target="blank">Скачать программу</a>
+            <a id="file-download-btn" class="btn btn-large btn-success" href="{{ env('FILE_DOWNLOAD_LINK') }}" target="blank">Скачать программу</a>
             <a class="btn btn-large btn-success" href="{{ url('activate') }}">Активация</a>
         </div>
     </div>

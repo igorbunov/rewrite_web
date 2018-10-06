@@ -1,4 +1,18 @@
 $( document ).ready(function() {
+	$('#file-download-btn').click(function () {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+// debugger;
+        $.ajax({
+            url: '/download',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN},
+            dataType: 'JSON',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
 	// debugger;
 	$('#modal_form, #overlay').click( function() {
         // debugger;

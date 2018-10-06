@@ -27,3 +27,5 @@ Route::post('support/send', 'SupportMessage@send');
 Route::get('license', function () {
     return view('license');
 });
+
+Route::post('download', 'UploadCounterController@update');
