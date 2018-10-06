@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTP_HOST} ^rewrite [NC,OR]
+    RewriteCond %{HTTP_HOST} ^www.rewrite$
+    RewriteCond %{REQUEST_URI} !public/
+    RewriteRule (.*) /public/$1 [L]
+
+    #В данном случае можно в папке /public_html/ создать файл .htaccess  с содержимым вида
+    #где domain-name.com  - имя Вашего сайта
+
+</IfModule>
+
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#
+#    RewriteCond %{HTTP_HOST} ^rewrite.su [NC,OR]
+#    RewriteCond %{HTTP_HOST} ^www.rewrite.su$
+#    RewriteCond %{REQUEST_URI} !public/
+#    RewriteRule (.*) /public/$1 [L]
+#
+#    #В данном случае можно в папке /public_html/ создать файл .htaccess  с содержимым вида
+#    #где domain-name.com  - имя Вашего сайта
+#
+#</IfModule>
