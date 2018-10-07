@@ -70,7 +70,7 @@
                 </tr>
                 <tr>
                     <td valign="top">
-                        <p class="lead">Видео по программе:</p><iframe width="420" height="315" src="https://www.youtube.com/embed/duOk73fo7ac" frameborder="0" allowfullscreen></iframe>
+                        <p class="lead">Видео по программе:</p><iframe width="420" height="315" src="{{ env('VIDEO_LINK') }}" frameborder="0" allowfullscreen></iframe>
                     </td>
                 </tr>
                 </tbody>
