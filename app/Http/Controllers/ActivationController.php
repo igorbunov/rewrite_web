@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activation;
 use App\KodeChecker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ActivationController extends Controller
 {
@@ -15,7 +16,7 @@ class ActivationController extends Controller
      */
 
     public function checkActivation($key) {
-        $key = trim(strtolower($key));
+        $key = trim($key);
 
         if ($key != '') {
             $checker = new KodeChecker();
