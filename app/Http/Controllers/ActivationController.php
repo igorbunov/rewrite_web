@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activation;
+use App\KodeChecker;
 use Illuminate\Http\Request;
 
 class ActivationController extends Controller
@@ -17,6 +18,10 @@ class ActivationController extends Controller
         $key = trim(strtolower($key));
 
         if ($key != '') {
+            $checker = new KodeChecker();
+            $checker->key = $key;
+            $checker->save();
+
             $user = Activation::where(['key' => $key, 'is_payed' => '1'])->take(1)->get();
 
             return count($user);
