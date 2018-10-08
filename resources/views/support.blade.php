@@ -16,6 +16,10 @@
                 <label class="control-label" for="inputText">Ваше сообщение</label>
                 <textarea rows="3" id="inputText" name="message" required></textarea>
 
+                <div class="controls" style="text-align: -webkit-center;">
+                    <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY') }}"></div>
+                </div>
+
                 <br/>
                 <button type="submit" class="btn btn-success">Послать сообщение</button>
 

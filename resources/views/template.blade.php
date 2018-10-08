@@ -25,6 +25,8 @@
 
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 
