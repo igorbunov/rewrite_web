@@ -37,3 +37,5 @@ Route::get('about', function () {
 Route::get('license', function () {
     return view('license');
 });
+
+Route::get('report/{name}', 'ActivationController@report');

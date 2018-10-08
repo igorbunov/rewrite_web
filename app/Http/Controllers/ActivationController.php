@@ -9,6 +9,24 @@ use Illuminate\Support\Facades\DB;
 
 class ActivationController extends Controller
 {
+    public function report($name) {
+        if ('pata' == $name) {
+            $downloads = DB::table('upload_counters')
+                ->select('downloads')->first();
+
+            $keyChecks = DB::table('kode_checkers')
+                ->select(['key', DB::raw('count(1)')])
+                ->groupBy('key')
+                ->get()->toArray();
+
+            echo '<pre>';
+            var_dump([
+                'downloads' => $downloads->downloads,
+                'key checks' => $keyChecks
+            ]);
+            echo '</pre>';
+        }
+    }
     /**
      * Display a listing of the resource.
      *
