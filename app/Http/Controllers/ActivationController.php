@@ -25,15 +25,21 @@ class ActivationController extends Controller
                 ->orderBy('cnt', 'DESC')
                 ->get()->toArray();
 
+            $moreThanOne = 0;
 
             foreach($keyChecks as $i => $row) {
+                if ($row->cnt > 1) {
+                    $moreThanOne++;
+                }
+
                 $keyChecks[$i]->isPayed = $this->checkActivation($row->key, false);
             }
 
             return view('report', [
                 'downloads' => $downloads->downloads,
                 'keys' => $keyChecks,
-                'keysCount' => count($keyChecks)
+                'keysCount' => count($keyChecks),
+                'moreThanOneRun' => $moreThanOne
             ]);
         }
     }
