@@ -25,6 +25,11 @@ class ActivationController extends Controller
                 ->orderBy('cnt', 'DESC')
                 ->get()->toArray();
 
+
+            foreach($keyChecks as $i => $row) {
+                $keyChecks[$i]->isPayed = $this->checkActivation($row->key, false);
+            }
+
             return view('report', [
                 'downloads' => $downloads->downloads,
                 'keys' => $keyChecks,
@@ -38,13 +43,15 @@ class ActivationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function checkActivation($key) {
+    public function checkActivation($key, bool $updateStatistics = true) {
         $key = trim($key);
 
         if ($key != '') {
-            $checker = new KodeChecker();
-            $checker->key = $key;
-            $checker->save();
+            if ($updateStatistics) {
+                $checker = new KodeChecker();
+                $checker->key = $key;
+                $checker->save();
+            }
 
             $user = Activation::where(['key' => $key, 'is_payed' => '1'])->take(1)->get();
 
