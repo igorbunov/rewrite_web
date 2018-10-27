@@ -15,16 +15,21 @@ class ActivationController extends Controller
                 ->select('downloads')->first();
 
             $keyChecks = DB::table('kode_checkers')
-                ->select(['key', DB::raw('count(1)')])
+                ->select(['key'
+                    , DB::raw('count(1) as cnt')
+                    , DB::raw("DATE_FORMAT(MAX(updated_at), '%d.%m.%Y %H:%i') AS dt")
+                    , DB::raw("IF(DATE(MAX(updated_at)) = CURDATE(), 1, 0) as is_today")
+                ])
                 ->groupBy('key')
+                ->orderBy('dt', 'DESC')
+                ->orderBy('cnt', 'DESC')
                 ->get()->toArray();
 
-            echo '<pre>';
-            var_dump([
+            return view('report', [
                 'downloads' => $downloads->downloads,
-                'key checks' => $keyChecks
+                'keys' => $keyChecks,
+                'keysCount' => count($keyChecks)
             ]);
-            echo '</pre>';
         }
     }
     /**
