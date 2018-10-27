@@ -30,19 +30,26 @@
 </head>
 <body>
 
-@yield('content')
+<div class="main-container">
+    @yield('content')
 
-<br/>
-<br/>
-<div class="container-narrow">
-    <div class="jumbotron">
-        <a href="{{ url('/') }}">На главную</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{{ url('/contacts') }}">Контакты</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{{ url('/return') }}">Условия возврата</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{{ url('/about') }}">О компании</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{{ url('/support') }}">Поддержка</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{{ url('/license') }}">Пользовательское соглашение</a>
-    </div>
+    <br/>
+    <br/>
+
+    <section class="content-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 content-text">
+                    <a href="{{ url('/') }}">На главную</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ url('/contacts') }}">Контакты</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ url('/return') }}">Условия возврата</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ url('/about') }}">О компании</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ url('/support') }}">Поддержка</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{ url('/license') }}">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <script src="http://code.jquery.com/jquery.js"></script>

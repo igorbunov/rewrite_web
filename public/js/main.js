@@ -22,26 +22,28 @@ $( document ).ready(function() {
 		});
 	});
 
-	$('.pic').click(function() {
-        // debugger;
-		var url = 'images/' + this.getAttribute("data-pik") + '.png'		
-			, img = new Image();
-			
-		img.onload = function() {
-			$('#modal_form').css({
-				'margin-left': '-' + this.width/2 + 'px'
-				, 'margin-top': '-' + this.height/2 + 'px'
-				, 'width': this.width
-				, 'height': this.height
-			}).append(this);
-			
-			$('#overlay').fadeIn(400, function() {
-				$('#modal_form') 
-				.css('display', 'block')
-				.animate({opacity: 1, top: '50%'}, 200);
-			});
-		};
-		
-		img.src = url;
-	});
+	// $('.pic').click(function() {
+	// 	var url = 'images/' + this.getAttribute("data-pik") + '.png'
+	// 		, img = new Image();
+	//
+	// 	img.onload = function() {
+     //        this.width = this.width * 0.7;
+     //        this.height = this.height * 0.7;
+    //
+	// 		$('#modal_form').css({
+	// 			'margin-left': '-' + this.width/2 + 'px'
+	// 			, 'margin-top': '-' + this.height/2 + 'px'
+	// 			, 'width': this.width
+	// 			, 'height': this.height
+	// 		}).append(this);
+	//
+	// 		$('#overlay').fadeIn(400, function() {
+	// 			$('#modal_form')
+	// 			.css('display', 'block')
+	// 			.animate({opacity: 1, top: '50%'}, 200);
+	// 		});
+	// 	};
+	//
+	// 	img.src = url;
+	// });
 });

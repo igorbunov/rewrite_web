@@ -36,6 +36,8 @@ body {
 
 p {
 	text-align: justify;
+    font-size: 21px;
+    line-height: 30px;
 }
 
 .error {
@@ -49,13 +51,8 @@ p {
 	cursor: pointer;
 }
 
-.pic {
-	cursor: pointer;
-}
-
 .pic-all {
 	background-image: url('../images/all.png');
-	width: 419px;
     height: 300px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -63,7 +60,6 @@ p {
 
 .pic-keys {
 	background-image: url('../images/keys.png');
-    width: 492px;
     height: 152px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -71,7 +67,6 @@ p {
 }
 .pic-plan {
 	background-image: url('../images/plan.png');
-	width: 409px;
 	height: 237px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -80,7 +75,6 @@ p {
 
 .pic-tabs {
 	background-image: url('../images/tabs.png');
-	width: 491px;
     height: 339px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -89,7 +83,6 @@ p {
 
 .pic-highlighting {
 	background-image: url('../images/highlighting.png');
-	width: 418px;
     height: 118px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -97,7 +90,6 @@ p {
 }
 .pic-search {
 	background-image: url('../images/search.png');
-	width: 491px;
     height: 133px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -105,14 +97,12 @@ p {
 }
 .pic-context_menu {
 	background-image: url('../images/context_menu.png');
-	width: 416px;
     height: 224px;
     background-repeat: no-repeat;
     background-size: contain;
 }
 .pic-synonims {
 	background-image: url('../images/synonims.png');
-	width: 491px;
     height: 207px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -120,7 +110,7 @@ p {
 }
 .pic-unused_keys {
 	background-image: url('../images/unused_keys.png');
-	width: 410px;
+	/*width: 410px;*/
     height: 86px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -129,7 +119,6 @@ p {
 
 .pic-history {
 	background-image: url('../images/history.png');
-	width: 492px;
     height: 234px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -138,7 +127,6 @@ p {
 
 .pic-buttons {
 	background-image: url('../images/buttons.png');
-	width: 410px;
     height: 87px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -147,7 +135,7 @@ p {
 
 .pic-save {
 	background-image: url('../images/save.png');
-	width: 254px;
+	/*width: 254px;*/
     height: 200px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -156,7 +144,6 @@ p {
 }
 .pic-timer {
 	background-image: url('../images/timer.png');
-	width: 300px;
     height: 165px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -164,7 +151,6 @@ p {
 }
 .pic-turn_off_highlighting {
 	background-image: url('../images/turn_off_highlighting.png');
-	width: 417px;
     height: 220px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -172,7 +158,6 @@ p {
 
 .pic-sites {
 	background-image: url('../images/sites.png');
-	width: 227px;
     height: 186px;
     background-repeat: no-repeat;
     background-size: contain;
@@ -210,7 +195,7 @@ p {
 	display: none;
 	opacity: 0;
 	z-index: 5;
-	padding: 20px 10px;
+	/*padding: 20px 10px;*/
 	cursor: pointer;
 }
 
@@ -225,4 +210,58 @@ p {
 	left: 0;
 	cursor: pointer;
 	display: none;
+}
+
+
+/*div[class="row"] {*/
+    /*outline: 1px dotted rgba(0, 0, 0, 0.25);*/
+/*}*/
+
+/*div[class^="col-"] {*/
+    /*background-color: rgba(255, 0, 0, 0.2);*/
+    /*outline: 1px dotted rgba(0, 0, 0, 0.5);*/
+/*}*/
+
+.content-text {
+    padding: 20px;
+}
+.video-plus-download {
+    padding-top: 30px;
+}
+.main-container{
+    margin: 0 auto;
+    max-width: 900px;
+}
+h1 {
+    font-size: 72px;
+    line-height: 1;
+}
+.activation {
+    text-align: center;
+}
+
+/*/////  media    ////////////////*/
+
+/*.data1 {*/
+    /*order: 2;*/
+/*}*/
+/*.data2 {*/
+    /*order: 1;*/
+/*}*/
+
+@media only screen and (max-width: 576px) {
+    .main-container {
+        max-width: 100%;
+        width: 100%;
+
+        /*height:100vh;*/
+        /*overflow-y:scroll;*/
+        /*overflow-x: hidden;*/
+    }
+    .data1 {
+        order: 1;
+    }
+    .data2 {
+        order: 2;
+    }
 }
