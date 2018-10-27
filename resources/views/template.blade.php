@@ -11,6 +11,7 @@
         gtag('config', 'UA-67999752-2');
     </script>
 
+    <meta name="yandex-verification" content="740e370e82dd3be0" />
 
     <title>Программа для рерайта</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
