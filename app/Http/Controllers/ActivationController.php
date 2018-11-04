@@ -19,9 +19,10 @@ class ActivationController extends Controller
                     , DB::raw('count(1) as cnt')
                     , DB::raw("DATE_FORMAT(MAX(updated_at), '%d.%m.%Y %H:%i') AS dt")
                     , DB::raw("IF(DATE(MAX(updated_at)) = CURDATE(), 1, 0) as is_today")
+                    , DB::raw("MAX(updated_at) AS sort_dt")
                 ])
                 ->groupBy('key')
-                ->orderBy('dt', 'DESC')
+                ->orderBy('sort_dt', 'DESC')
                 ->orderBy('cnt', 'DESC')
                 ->get()->toArray();
 
