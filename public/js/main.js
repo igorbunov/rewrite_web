@@ -1,7 +1,47 @@
 $( document ).ready(function() {
+    var validateEmail = function(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    };
+
+    $("#next-button").click(function () {
+        var email = $("#email").val().trim(),
+            pass = $("#pass").val().trim(),
+            token = $('meta[name="csrf-token"]').attr('content');
+
+        if (!validateEmail(email)) {
+            alert("Не верный email");
+            return;
+        } else if (pass == '') {
+            alert("Пустой пароль");
+            return;
+        }
+
+        $("#pay-button-container").empty();
+
+        $.ajax({
+            url: '/get_pay_button',
+            type: 'POST',
+            data: {
+                _token: token,
+                email: email,
+                pass: pass,
+                key: $(this).data('key')
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                $("#pay-button-container").append(data.html);
+                $(".second-step").css('display', 'block');
+                $("#next-button").hide();
+                $("#email").attr('disabled', 'disabled');
+                $("#pass").attr('disabled', 'disabled');
+            }
+        });
+    });
+
 	$('#file-download-btn').click(function () {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-// debugger;
+
         $.ajax({
             url: '/download',
             type: 'POST',
@@ -13,37 +53,10 @@ $( document ).ready(function() {
         });
     });
 
-	// debugger;
 	$('#modal_form, #overlay').click( function() {
-        // debugger;
 		$('#modal_form').animate({opacity: 0, top: '45%'}, 200, function() {
 			$(this).css('display', 'none').empty();
 			$('#overlay').fadeOut(400);
 		});
 	});
-
-	// $('.pic').click(function() {
-	// 	var url = 'images/' + this.getAttribute("data-pik") + '.png'
-	// 		, img = new Image();
-	//
-	// 	img.onload = function() {
-     //        this.width = this.width * 0.7;
-     //        this.height = this.height * 0.7;
-    //
-	// 		$('#modal_form').css({
-	// 			'margin-left': '-' + this.width/2 + 'px'
-	// 			, 'margin-top': '-' + this.height/2 + 'px'
-	// 			, 'width': this.width
-	// 			, 'height': this.height
-	// 		}).append(this);
-	//
-	// 		$('#overlay').fadeIn(400, function() {
-	// 			$('#modal_form')
-	// 			.css('display', 'block')
-	// 			.animate({opacity: 1, top: '50%'}, 200);
-	// 		});
-	// 	};
-	//
-	// 	img.src = url;
-	// });
 });

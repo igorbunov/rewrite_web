@@ -131,6 +131,8 @@ class ActivationController extends Controller
                 $ac ->order_id = $payResponse['order_id'];
 
                 $ac ->key = $order['key'];
+                $ac ->email = isset($order['email']) ? $order['email'] : 'some@email.ru';
+                $ac ->password = isset($order['pass']) ? $order['pass'] : 'some password';
 
                 $ac->save();
 
@@ -177,9 +179,35 @@ class ActivationController extends Controller
         return view('pre_activate');
     }
 
-    public function showPayButton($key)
+    public function getButton(Request $req)
     {
-        $orderId = '{"key": "'.$key.'", "dt": "'.date("Y.m.d H:i:s").'"}';
+        $email = $req->post('email');
+        $pass = $req->post('pass');
+        $key = $req->post('key');
+
+        $btnView = $this->showPayButton($key, $email, $pass);
+
+        return response()->json([
+            'is_error' => false,
+            'html' => $btnView
+        ]);
+    }
+
+    public function showPayWizardForm($key)
+    {
+        $amount = env('LIQ_PAY_PAY_AMOUNT'); //рублей
+        return view('activate', ['key' => $key, 'amount' => $amount]);
+    }
+
+    public function showPayButton($key, $email = '', $pass = '')
+    {
+        $orderInfo = array(
+            'key' => $key,
+            'dt' => date("Y.m.d H:i:s"),
+            'email' => $email,
+            'pass' => $pass
+        );
+
         $amount = env('LIQ_PAY_PAY_AMOUNT'); //рублей
         $liqPay = new \LiqPay(env('LIQ_PAY_PUBLIC_KEY'), env('LIQ_PAY_PRIVATE_KEY'));
 
@@ -188,13 +216,64 @@ class ActivationController extends Controller
             'amount'         => $amount,
             'currency'       => 'RUB', //USD, EUR, RUB, UAH
             'description'    => 'Активация ключа: '.$key,
-            'order_id'       => $orderId,
+            'order_id'       => json_encode($orderInfo),
             'version'        => '3',
             'result_url' => env('LIQ_PAY_RESULT_URL'), // передается через редирект
             'server_url' => env('LIQ_PAY_SERVER_URL'), // передается через курл
             'sandbox' => env('LIQ_PAY_SANDBOX')
         ));
 
-        return view('activate', ['button' => $html, 'key' => $key, 'amount' => $amount]);
+        return $html;
+//        return view('activate', ['button' => $html, 'key' => $key, 'amount' => $amount]);
+    }
+
+    public function changePass($key = '')
+    {
+        return view('change_pass', [
+            'key' => $key
+        ]);
+    }
+
+    public function changePassAction(Request $req)
+    {
+        $email = $req->post('email', '');
+        $pass = $req->post('pass', '');
+        $key = $req->post('key', '');
+
+        if (empty($email) or empty($pass) or empty($key) or $email == 'some@email.ru') {
+            return redirect('/');
+        }
+
+        $user = Activation::findUser($key);
+
+        if (!is_null($user)) {
+            $user->email = $email;
+            $user->password = $pass;
+            $user->save();
+
+            if (env('APP_DEBUG', true) == false) {
+                \mail($email, 'Смена емейла и пароля в программе рерайт'
+                    , 'Вы сменили пароль на сайте rewrite.su  Ваш пароль: ' . $pass);
+                \mail('igorbunov.ua@gmail.com', 'Смена емейла и пароля в программе рерайт'
+                    , $email . ' сменил пароль на сайте rewrite.su');
+            }
+        }
+
+        return redirect('/');
+    }
+
+    public function checkLogin(string $email = '', string $pass = '')
+    {
+        if (empty($email) or empty($pass) or $email == 'some@email.ru') {
+            return 0;
+        }
+
+        $user = Activation::findUserByEmailPass($email, $pass);
+
+        if (!is_null($user)) {
+            return 1;
+        }
+
+        return 0;
     }
 }
