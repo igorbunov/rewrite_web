@@ -6,14 +6,14 @@
 
         @if (!empty($key))
             <br/>
-            Введите ключ: <input type="text" style="width: 300px;" name="key" value="{{ $key }}">
+            Введите ключ: <input type="text"  style="width: 300px;" name="key" value="{{ $key }}">
         @else
             Введите ключ: <input type="text" style="width: 300px;" name="key">
         @endif
         <br/><br/>
-        email: <input type="email" name="email"/>
+        email: <input type="email" name="email" maxlength="40"/>
         <br/>
-        пароль: <input type="text" name="pass"/>
+        пароль: <input type="text" name="pass" maxlength="18"/>
         <br/><br/>
         <input type="submit" value="Сменить">
     </form>

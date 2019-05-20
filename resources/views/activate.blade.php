@@ -14,8 +14,8 @@
                     <div class="first-step">
                         <span style="font-size: 14px;font-weight: bold; color: red;">Email и пароль необходимы для запуска программы после переустановки windows или смены компьютера</span>
                         <div class="credentials">
-                            <input id="email" type="email" class="form-control" placeholder="Введите емейл"><br/>
-                            <input id="pass" type="text" class="form-control" placeholder="Введите пароль"><br/>
+                            <input id="email" type="email" class="form-control" placeholder="Введите емейл" maxlength="40"><br/>
+                            <input id="pass" type="text" class="form-control" placeholder="Введите пароль" maxlength="18"><br/>
                         </div>
                         <br/>
                         <button id="next-button" data-key="{{ $key }}" type="button" class="btn btn-success">Далее</button>
