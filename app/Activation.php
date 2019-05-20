@@ -9,7 +9,8 @@ class Activation extends Model
     public static function findUser(string $key)
     {
         return self::where([
-            'key' => $key
+            'key' => $key,
+            'is_payed' => 1
         ])->first();
     }
 
@@ -17,7 +18,8 @@ class Activation extends Model
     {
         return self::where([
             'email' => $email,
-            'password' => $pass
+            'password' => $pass,
+            'is_payed' => 1
         ])->first();
     }
 }

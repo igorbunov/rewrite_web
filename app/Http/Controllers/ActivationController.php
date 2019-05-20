@@ -136,6 +136,13 @@ class ActivationController extends Controller
 
                 $ac->save();
 
+                if ($isPayed > 0 and env('APP_DEBUG', true) == false and $ac->email != 'some@email.ru') {
+                    \mail($ac->email, 'Оплата программы рерайт'
+                        , 'Вы оплатили программу на сайте rewrite.su  Ваш пароль: ' . $ac->password . '   Важно! Не теряйте этот пароль!');
+                    \mail('igorbunov.ua@gmail.com', 'Покупка программы рерайт'
+                        , $ac->email . ' купил программу');
+                }
+
                 return view('activation_success');
             }
         }
