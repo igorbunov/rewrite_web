@@ -17,6 +17,28 @@
     <section class="content-block">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12 content-text video-plus-download">
+                    <a id="file-download-btn" class="btn btn-large btn-success" href="{{ env('FILE_DOWNLOAD_LINK') }}" target="blank">Скачать программу</a>
+                    <a class="btn btn-large btn-success" href="{{ url('activate') }}">Активация</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 content-text">
+                    <p>Видео по программе:</p><iframe width="420" height="315" src="{{ env('VIDEO_LINK') }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="content-block">
+        <div class="container">
+            <div class="row">
                 <div class="col-lg-6 content-text data1">
                     <div class="pic pic-all" data-pik="all"></div>
                 </div>
