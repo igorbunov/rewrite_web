@@ -50,7 +50,7 @@ class SupportMessage extends Controller
 
     private function isValidMessage($message): bool
     {
-        $isSpam = false;
+        $isValid = true;
 
         $wrongWords = [
             'href="',
@@ -60,11 +60,11 @@ class SupportMessage extends Controller
 
         foreach ($wrongWords as $wrongWord) {
             if (strpos($message, $wrongWord) !== false) {
-                $isSpam = true;
+                $isValid = false;
                 break;
             }
         }
 
-        return $isSpam;
+        return $isValid;
     }
 }
