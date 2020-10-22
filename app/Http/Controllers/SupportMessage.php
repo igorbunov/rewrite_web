@@ -17,6 +17,11 @@ class SupportMessage extends Controller
             return view('main');
         }
 
+
+        if (!$this->isValidMessage($req->post('message'))) {
+            return view('main');
+        }
+
         $data = array(
             'secret' => env('CAPTCHA_SECRET'),
             'response' => $catpchaResponse
@@ -41,5 +46,25 @@ class SupportMessage extends Controller
         } else {
             return view('main');
         }
+    }
+
+    private function isValidMessage($message): bool
+    {
+        $isSpam = false;
+
+        $wrongWords = [
+            'href="',
+            'http://',
+            'https://'
+        ];
+
+        foreach ($wrongWords as $wrongWord) {
+            if (strpos($message, $wrongWord) !== false) {
+                $isSpam = true;
+                break;
+            }
+        }
+
+        return $isSpam;
     }
 }
